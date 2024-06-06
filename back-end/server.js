@@ -37,12 +37,16 @@ const upload = multer({ storage });
 
 // MONGOOSE SET UP
 const PORT = process.env.PORT || 6000;
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParse: true,
-    useUnifiedTopology: true, 
-}).then(() => {
-    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
-}).catch((e) => console.log(`${e} did not connect.`));
+
+app.listen(PORT, async () => {
+    mongoose.connect(process.env.MONGO_URL);
+    console.log('Connected to MongoDB..');
+    console.log(`Server running on port: ${PORT}`)
+})
+// , {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// }
 
 
 
