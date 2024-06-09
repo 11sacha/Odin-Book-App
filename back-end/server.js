@@ -10,6 +10,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { register } from "./controllers/auth.js"
 import authRoutes from "./routes/auth.js"
+import usersRoutes from './routes/users.js'
+import { verifyToken } from './middleware/auth.js';
 
 // CONFIGURATIONS
 const __filename = fileURLToPath(import.meta.url);
@@ -41,7 +43,8 @@ const upload = multer({ storage });
 app.post("/auth/register", upload.single("picture"), register);
 
 //ROUTES
-app.use("/auth", authRoutes);
+app.use("/auth", verifyToken, authRoutes);
+app.use("/users",verifyToken, usersRoutes);
 
 // MONGOOSE SET UP
 const PORT = process.env.PORT || 6000;
