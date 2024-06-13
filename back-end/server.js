@@ -14,6 +14,10 @@ import authRoutes from "./routes/auth.js";
 import usersRoutes from './routes/users.js';
 import postsRoutes from './routes/posts.js';
 import { verifyToken } from './middleware/auth.js';
+import Post from './models/Post.js'
+import User from './models/User.js';
+import { users, posts } from './data/dummyUsers.js'
+
 
 // CONFIGURATIONS
 const __filename = fileURLToPath(import.meta.url);
@@ -48,7 +52,7 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 //ROUTES
 app.use("/auth", verifyToken, authRoutes);
 app.use("/users",verifyToken, usersRoutes);
-app.use("posts", verifyToken, postsRoutes)
+app.use("/posts", verifyToken, postsRoutes)
 
 
 // MONGOOSE SET UP
@@ -57,6 +61,8 @@ const PORT = process.env.PORT || 6000;
 app.listen(PORT, async () => {
     await mongoose.connect(process.env.MONGO_URL);
     console.log('Connected to MongoDB..');
+    // User.insertMany(users);
+    // Post.insertMany(posts);
     console.log(`Server running on port: ${PORT}`)
 })
 // , {

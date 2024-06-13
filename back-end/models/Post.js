@@ -22,7 +22,7 @@ const postSchema = Schema({
             of: Boolean,
         },
         comments: {
-            types: Array,
+            type: Array,
             default: []
         }
     },

@@ -16,6 +16,7 @@ export const verifyToken = async (req, res, next) => {
         req.user  = verified;
         next();
     } catch (error) {
+        console.error("Token verification error:", error.message);
         res.status(500).json({ error: error.message });
     }
 }
