@@ -47,12 +47,12 @@ const upload = multer({ storage });
 
 // ROUTES WITH FILES
 app.post("/auth/register", upload.single("picture"), register);
-app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post("/posts", upload.single("picture"), createPost);
 
 //ROUTES
-app.use("/auth", verifyToken, authRoutes);
-app.use("/users",verifyToken, usersRoutes);
-app.use("/posts", verifyToken, postsRoutes)
+app.use("/auth", authRoutes);
+app.use("/users", usersRoutes);
+app.use("/posts", postsRoutes)
 
 
 // MONGOOSE SET UP
