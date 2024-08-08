@@ -138,4 +138,6 @@ const UserWidget = ({ userId, picturePath }) => {
             </FlexBetween>
         </WidgetWrapper>
     )
-}
+};
+
+export default UserWidget;
