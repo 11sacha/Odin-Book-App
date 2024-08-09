@@ -102,12 +102,71 @@ import {
                                     </FlexBetween>
                                 )}
                             </Box>
+                            {image && (
+                                <IconButton 
+                                    onClick={() => setImage(null)}
+                                    sx={{ width: "15%"}}
+                                >
+                                    <DeleteOutlined />
+                                </IconButton>
+                            )}
                         </FlexBetween>
                       )}
                     </Dropzone>
-
                 </Box>
             )}
+
+            <Divider sx={{ margin: "1.25rem 0"}}/>
+
+            <FlexBetween>
+                <FlexBetween 
+                    gap="0.25rem" 
+                    onClick={() => setIsImage(!isImage)}
+                >
+                    <ImageOutlined sx={{ color: mediumMain }}/>
+                    <Typography
+                        color={mediumMain}
+                        sx={{ "&:hover": {cursor: "pointer", color: "medium"} }}
+                    >
+                            Image
+                    </Typography>
+                </FlexBetween>
+
+                {isNonMobileScreens ? (
+                    <>
+                        <FlexBetween gap="0.25rem">
+                            <GifBoxOutlined sx={{ color: mediumMain }}/>
+                            <Typography color={ mediumMain }>Clip</Typography>
+                        </FlexBetween>
+
+                        <FlexBetween gap="0.25rem">
+                            <AttachFileOutlined sx={{ color: mediumMain }}/>
+                            <Typography color={ mediumMain }>Attachment</Typography>
+                        </FlexBetween>
+
+                        <FlexBetween gap="0.25rem">
+                            <MicOutlined sx={{ color: mediumMain }}/>
+                            <Typography color={ mediumMain }>Audio</Typography>
+                        </FlexBetween>
+                    </>
+                ) : (
+                    <FlexBetween gap="0.25rem">
+                        <Typography color={ mediumMain }>Attachment</Typography>
+                    </FlexBetween>
+                )}
+
+                <Button 
+                    disabled={!post}
+                    onClick={handlePost}
+                    sx={{
+                        color: palette.background.alt,
+                        backgroundColor: palette.primary.main,
+                        borderRadius: "3rem"
+                    }}
+                >
+                    Post
+                </Button>                
+            </FlexBetween>
         </WidgetWrapper>
     )
   }
