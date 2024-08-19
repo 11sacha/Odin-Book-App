@@ -8,6 +8,7 @@ import { setFriends } from "state";
 const FriendsListWidget = () => {
     const dispatch = useDispatch();
     const { palette } = useTheme();
+    const dark = palette.neutral.dark;
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
 
@@ -20,4 +21,31 @@ const FriendsListWidget = () => {
         const date = await response.json();
         dispatch(setFriends({ friends: data }));
     };
+
+    useEffect(() => {
+        getFriends();
+    }, []);
+
+    return (
+        <WidgetWrapper>
+            <Typography color={dark}
+            variant="h5"
+            fontWeight="500"
+            sx={{ mb: "1.5rem"}}
+            >
+                Friends List
+            </Typography>
+            <Box display="flex" flexDirection="column" gap="1.5rem">
+                { friends.map((friend) => (
+                    <Friend
+                        key={friend._id}
+                        friendId={friend._id}
+                        name={`${friend.firstName} ${friend.lastName}`}
+                        subtitle={friend.occupation}
+                        userPicturePath={friend.picturePath}
+                    />
+                ))}
+            </Box>
+        </WidgetWrapper>
+    )
 }
