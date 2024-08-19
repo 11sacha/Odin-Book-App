@@ -41,13 +41,13 @@ const ProfilePage = () => {
         justifyContent="center"
       >
         <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
-          <UserWidget userId={_id} picturePath={picturePath}/>
+          <UserWidget userId={userId} picturePath={user.picturePath}/>
           <Box m="2rem 0"/>
-          <FriendsListWidget userId={_id}/>
+          <FriendsListWidget userId={userId}/>
         </Box>
         <Box flexBasis={isNonMobileScreens ? "42%" : undefined} mt={isNonMobileScreens ? undefined : "2rem"}>
-          <MyPostWidget picturePath={picturePath}/>
-          <PostsWidget userId={_id}/>
+          <MyPostWidget picturePath={user.picturePath}/>
+          <PostsWidget userId={userId}/>
         </Box>
       </Box>
     </Box>
