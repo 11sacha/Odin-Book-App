@@ -16,7 +16,7 @@ export const register = async (req, res) => {
             occupation
         } = req.body;
 
-        const salt = await bcrypt.genSalt(8);
+        const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = new User({

@@ -68,11 +68,7 @@ app.listen(PORT, async () => {
 
 app.get('/', (req, res) => {
     res.send("Server's running!")
-  })
-// , {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// }
+  });
 
 
 
