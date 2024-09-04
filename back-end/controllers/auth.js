@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-//import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import User from '../models/User.js';
-import generateTokenAndSetCookie from '../utils/generateJWT.js'
+// import generateTokenAndSetCookie from '../utils/generateJWT.js'
 
 export const register = async (req, res) => {
     try {
@@ -49,16 +49,13 @@ export const login = async (req, res) => {
         const validPassword = await bcrypt.compare(password, user?.password || "")
         if (!validPassword) return res.status(400).json({ message: "Invalid credentials.."});
 
-        if(user) {
-            generateTokenAndSetCookie(user._id, res)
-
-            res.status(201).json({
-                message: "Log In successfull!",
-                user
-            });
-        } else {
-            res.status(400).json({ error: "Invalid user data" });
-        };
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
+        
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        delete user.password;
+        res.status(200).json({ token, user });
+        
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
