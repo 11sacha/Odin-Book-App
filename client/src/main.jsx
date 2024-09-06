@@ -1,4 +1,4 @@
-import React, { version } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -13,12 +13,12 @@ const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => 
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoreActions: [ FLUSH, REHYDRATE, PAUSE, PERSIST, PERSIST, REGISTER],
-      }
-    })
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
