@@ -1,5 +1,15 @@
-import React, { useState } from 'react'
-import { Box, IconButton, InputBase, Typography, Select, MenuItem, FormControl, useTheme, useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  IconButton,
+  InputBase,
+  Typography,
+  Select,
+  MenuItem,
+  FormControl,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import {
   Search,
   Message,
@@ -10,29 +20,29 @@ import {
   Menu,
   Close,
 } from "@mui/icons-material";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 
-const navBar = () => {
+const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)")
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
-  const nuetralDark = theme.palette.neutral.dark;
+  const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
-  
+
   return (
-    <FlexBetween padding="1rem 6%" backgroundColor={alt} >
+    <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
         <Typography
           fontWeight="bold"
@@ -40,22 +50,22 @@ const navBar = () => {
           color="primary"
           onClick={() => navigate("/home")}
           sx={{
-            "&hover": {
+            "&:hover": {
               color: primaryLight,
               cursor: "pointer",
             },
           }}
         >
-          OdinBook
+          Sociopedia
         </Typography>
-        { isNonMobileScreens && (
+        {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}
             borderRadius="9px"
             gap="3rem"
             padding="0.1rem 1.5rem"
           >
-            <InputBase placeholder='Search..' />
+            <InputBase placeholder="Search..." />
             <IconButton>
               <Search />
             </IconButton>
@@ -64,7 +74,7 @@ const navBar = () => {
       </FlexBetween>
 
       {/* DESKTOP NAV */}
-      { isNonMobileScreens ? (
+      {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
@@ -76,8 +86,8 @@ const navBar = () => {
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
-          <FormControl>
-            <Select 
+          <FormControl variant="standard" value={fullName}>
+            <Select
               value={fullName}
               sx={{
                 backgroundColor: neutralLight,
@@ -92,7 +102,7 @@ const navBar = () => {
                   backgroundColor: neutralLight,
                 },
               }}
-              input={ <InputBase/> }
+              input={<InputBase />}
             >
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
@@ -102,7 +112,9 @@ const navBar = () => {
           </FormControl>
         </FlexBetween>
       ) : (
-        <IconButton onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}>
+        <IconButton
+          onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
+        >
           <Menu />
         </IconButton>
       )}
@@ -115,14 +127,16 @@ const navBar = () => {
           bottom="0"
           height="100%"
           zIndex="10"
-          maxWidth="500xp"
+          maxWidth="500px"
           minWidth="300px"
           backgroundColor={background}
         >
           {/* CLOSE ICON */}
           <Box display="flex" justifyContent="flex-end" p="1rem">
-            <IconButton onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}>
-              <Close/>
+            <IconButton
+              onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
+            >
+              <Close />
             </IconButton>
           </Box>
 
@@ -180,4 +194,4 @@ const navBar = () => {
   );
 };
 
-export default navBar;
+export default Navbar;
