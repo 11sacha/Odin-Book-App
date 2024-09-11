@@ -16,7 +16,7 @@ import postsRoutes from './routes/posts.js';
 import { verifyToken } from './middleware/auth.js';
 import Post from './models/Post.js'
 import User from './models/User.js';
-import { users, posts } from './data/dummyUsers.js'
+import { users, posts } from './data/dummyData.js'
 
 
 // CONFIGURATIONS
