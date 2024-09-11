@@ -133,10 +133,14 @@ import {
   
           <FlexBetween gap="1rem">
             <FlexBetween gap="1rem">
-              <img src="../assets/linkedin.png" alt="linkedin" />
+                <a href="https://www.linkedin.com/in/sacha-guimarey-6487681a2/" target="_blank" style={{ color: "inherit" }}>
+                  <img src="../assets/linkedin.png" alt="linkedin" />
+                </a>
               <Box>
                 <Typography color={main} fontWeight="500">
-                  Linkedin
+                  <a href="https://www.linkedin.com/in/sacha-guimarey-6487681a2/" target="_blank" style={{ color: "inherit" }}>
+                    Linkedin
+                  </a>
                 </Typography>
                 <Typography color={medium}>Network Platform</Typography>
               </Box>

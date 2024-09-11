@@ -159,6 +159,7 @@ import {
             onClick={handlePost}
             style={{ color: "black", cursor: "pointer", "&:hover": {
                     cursor: "pointer",
+                    backgroundColor: medium
                   },}}
             sx={{
               backgroundColor: palette.primary.main,
