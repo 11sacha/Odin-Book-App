@@ -61,7 +61,7 @@ const PORT = process.env.PORT || 6000;
 app.listen(PORT, async () => {
     await mongoose.connect(process.env.MONGO_URL);
     console.log('Connected to MongoDB..');
-    //User.insertMany(users);
+    // User.insertMany(users);
     //Post.insertMany(posts);
     console.log(`Server running on port: ${PORT}`)
 })
