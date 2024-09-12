@@ -31,7 +31,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, 'public/assets')));
+app.use("/assets", express.static(path.join(__dirname, 'back-end/public/assets')));
 
 // FILE STORAGE
 const storage = multer.diskStorage({
@@ -66,10 +66,10 @@ app.listen(PORT, async () => {
     console.log(`Server running on port: ${PORT}`)
 })
 
-app.get('/', (req, res) => {
-    res.send("Server's running!")
-  });
-
+// app.get('/', (req, res) => {
+//     res.send("Server's running!")
+//   });
+ 
 
 
 
