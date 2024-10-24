@@ -21,6 +21,10 @@ const AdvertWidget = () => {
         height="auto"
         alt="advert"
         src="http://localhost:1234/assets/info4.jpeg"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "http://localhost:1234/assets/info4.jpeg"; 
+          }} 
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
